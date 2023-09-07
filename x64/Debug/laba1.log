@@ -1,4 +1,3 @@
-﻿  Source.cpp
-C:\Download\Student\lovis\laba1\Source.cpp(9,13): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
-C:\Download\Student\lovis\laba1\Source.cpp(13,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+﻿  spisok.cpp
+C:\Download\Student\lovis\laba1\spisok.cpp(60,13): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
   laba1.vcxproj -> C:\Download\Student\lovis\laba1\x64\Debug\laba1.exe
