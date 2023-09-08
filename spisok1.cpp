@@ -4,29 +4,30 @@
 #include <conio.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
+#include <windows.h>
 #include <string.h>
 
 struct student {
 	char name[20], surname[20], faculty[10], id[10];
 } chel[3];
 void main() {
-	setlocale(LC_ALL, "RUS");
+	SetConsoleCP(1251);//–£—Å—Ç–∞–Ω–æ–≤–∫–∞ —è–∑—ã–∫–∞
+	SetConsoleOutputCP(1251);
 	int i;
 	for (i = 0; i < 3; i++) {
-		printf("¬‚Â‰ËÚÂ ËÏˇ ÒÚÛ‰ÂÌÚ‡ %d: ", i + 1);
+		printf("√Ç√¢√•√§√®√≤√• √®√¨√ø √±√≤√≥√§√•√≠√≤√† %d: ", i + 1);
 		scanf("%s", chel[i].name);
-		printf("¬‚Â‰ËÚÂ Ù‡ÏËÎË˛ ÒÚÛ‰ÂÌÚ‡ %d: ", i + 1);
+		printf("√Ç√¢√•√§√®√≤√• √¥√†√¨√®√´√®√æ √±√≤√≥√§√•√≠√≤√† %d: ", i + 1);
 		scanf("%s", chel[i].surname);
-		printf("¬‚Â‰ËÚÂ Ì‡Á‚‡ÌËÂ Ù‡ÍÛÎ¸ÚÂÚ‡ ÒÚÛ‰ÂÌÚ‡ %d: ", i + 1);
+		printf("√Ç√¢√•√§√®√≤√• √≠√†√ß√¢√†√≠√®√• √¥√†√™√≥√´√º√≤√•√≤√† √±√≤√≥√§√•√≠√≤√† %d: ", i + 1);
 		scanf("%s", chel[i].faculty);
-		printf("¬‚Â‰ËÚÂ ÌÓÏÂ Á‡˜∏ÚÌÓÈ ÍÌËÊÍË ÒÚÛ‰ÂÌÚ‡ %d: ", i + 1);
+		printf("√Ç√¢√•√§√®√≤√• √≠√Æ√¨√•√∞ √ß√†√∑¬∏√≤√≠√Æ√© √™√≠√®√¶√™√® √±√≤√≥√§√•√≠√≤√† %d: ", i + 1);
 		scanf("%s", chel[i].id);
 	}
 	char search[50];
-	printf("\n◊ÚÓ·˚ Ì‡ÈÚË ÒÚÛ‰ÂÌÚ‡ ‚‚Â‰ËÚÂ ËÏˇ, Ù‡ÏËÎË˛ ËÎË ÌÓÏÂ ÍÓÌÚ‡ÍÚ‡ (ÏÓÊÌÓ ‚‚ÂÒÚË ÌÂÒÍÓÎ¸ÍÓ ·ÛÍ‚ ËÎË ˆËÙ): ");
+	printf("\n√ó√≤√Æ√°√ª √≠√†√©√≤√® √±√≤√≥√§√•√≠√≤√† √¢√¢√•√§√®√≤√• √®√¨√ø, √¥√†√¨√®√´√®√æ √®√´√® √≠√Æ√¨√•√∞ √™√Æ√≠√≤√†√™√≤√† (√¨√Æ√¶√≠√Æ √¢√¢√•√±√≤√® √≠√•√±√™√Æ√´√º√™√Æ √°√≥√™√¢ √®√´√® √∂√®√¥√∞): ");
 	scanf("%s", search);
-	printf("–ÂÁÛÎ¸Ú‡Ú˚ ÔÓËÒÍ‡:\n");
+	printf("√ê√•√ß√≥√´√º√≤√†√≤√ª √Ø√Æ√®√±√™√†:\n");
 
 	for (i = 0; i < 3; i++) {
 		if (strstr(chel[i].name, search) != NULL || strstr(chel[i].surname, search) != NULL || strstr(chel[i].faculty, search) || strstr(chel[i].id, search)) {
