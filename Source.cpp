@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+/*#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <conio.h>
 #include <locale.h>
@@ -122,4 +122,4 @@ void main() {
             break;
         }
     } while (choice != 5);
-}
+}*/
