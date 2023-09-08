@@ -1,4 +1,4 @@
-/*#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <conio.h>
 #include <windows.h>
@@ -7,120 +7,173 @@
 
 
 void main() {
-    int rows, cols, choice, i, j, choice2;
-    int* arr = 0;
+    int rows, cols, rows2, cols2, choice, i, j, choice2, k;
+    int** arr = 0;
     int min, max, index, sum;
-    SetConsoleCP(1251);//РЈСЃС‚Р°РЅРѕРІРєР° СЏР·С‹РєР°
+    SetConsoleCP(1251);//Установка языка
     SetConsoleOutputCP(1251);
     srand(time(NULL));
     do {
-        printf("\tГЊГҐГ­Гѕ\n");
-        printf("1. ГЏГ°Г®Г±Г¬Г®ГІГ°ГҐГІГј Г¬Г Г±Г±ГЁГў\n");
-        printf("2. ГЌГ Г©ГІГЁ Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГҐ ГЁ Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГҐ Г§Г­Г Г·ГҐГ­ГЁГҐ ГЅГҐГ«ГҐГ¬ГҐГ­ГІГ  Г¬Г Г±Г±ГЁГўГ \n");
-        printf("3. ГЏГ®Г±Г·ГЁГІГ ГІГј Г±ГіГ¬Г¬Гі ГЅГ«Г¬ГҐГ­ГІГ®Гў Г¬Г Г±Г±ГЁГўГ  Гў Г±ГІГ°Г®ГЄГҐ ГЁГ«ГЁ Г±ГІГ®Г«ГЎГ¶ГҐ\n");
-        printf("4. Г‘Г®Г§Г¤Г ГІГј Г­Г®ГўГ»Г© Г¬Г Г±Г±ГЁГў\n");
-        printf("5. Г‚Г»ГµГ®Г¤\n");
-        printf("Г‚Г»ГЎГҐГ°ГЁГІГҐ Г¤ГҐГ©Г±ГІГўГЁГҐ: ");
+        printf("\tМеню\n");
+        printf("1. Просмотреть массив\n");
+        printf("2. Найти максимальное и минимальное значение эелемента массива\n");
+        printf("3. Посчитать сумму элментов массива в строке или столбце\n");
+        printf("4. Создать новый массив\n");
+        printf("5. Посчитать количесвто нулей в строке\n");
+        printf("6. Посчитать количество нулей в столбце\n");
+        printf("7. Выход\n");
+        printf("Выберите действие: ");
         scanf("%d", &choice);
         switch (choice) {
         case 1:
             if (arr == NULL) {
-                printf("Г‘Г­Г Г·Г Г«Г  Г±Г®Г§Г¤Г Г©ГІГҐ Г¬Г Г±Г±ГЁГў!\n");
+                printf("Сначала создайте массив!\n");
                 break;
             }
-            for (i = 0; i < rows; i++) {  // Г¶ГЁГЄГ« ГЇГ® Г±ГІГ°Г®ГЄГ Г¬
-                for (j = 0; j < cols; j++) { // Г¶ГЁГЄГ« ГЇГ® Г±ГІГ®Г«ГЎГ¶Г Г¬
-                    printf("%5d ", *(arr + i * cols + j)); // ГўГ»ГўГ®Г¤ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Г¬Г Г±Г±ГЁГўГ 
+            for (i = 0; i < rows; i++) {  // цикл по строкам
+                for (j = 0; j < cols; j++) { // цикл по столбцам
+                    printf("%5d ", arr[i][j]); // вывод элементов массива
                 }
                 printf("\n");
             }
             break;
         case 2:
             if (arr == NULL) {
-                printf("Г‘Г­Г Г·Г Г«Г  Г±Г®Г§Г¤Г Г©ГІГҐ Г¬Г Г±Г±ГЁГў!\n");
+                printf("Сначала создайте массив!\n");
                 break;
             }
-            min = *(arr + 0 * cols + 0);
-            max = *(arr + 0 * cols + 0);
-            for (i = 0; i < rows; i++) { // Г¶ГЁГЄГ« ГЇГ® Г±ГІГ°Г®ГЄГ Г¬
-                for (j = 0; j < cols; j++) { // Г¶ГЁГЄГ« ГЇГ® Г±ГІГ®Г«ГЎГ¶Г Г¬
-                    if (*(arr + i * cols + j) < min) {
-                        min = *(arr + i * cols + j);
+            min = arr[0][0];
+            max = arr[0][0];
+            for (i = 0; i < rows; i++) { // цикл по строкам
+                for (j = 0; j < cols; j++) { // цикл по столбцам
+                    if (arr[i][j] < min) {
+                        min = arr[i][j];
                     }
-                    if (*(arr + i * cols + j) > max) {
-                        max = *(arr + i * cols + j);
+                    if (arr[i][j] > max) {
+                        max = arr[i][j];
                     }
                 }
             }
-            printf("ГЊГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГҐ Г·ГЁГ±Г«Г®: %d\n", min);
-            printf("ГЊГ ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГҐ Г·ГЁГ±Г«Г®: %d\n", max);
+            printf("Минимальное число: %d\n", min);
+            printf("Максимальное число: %d\n", max);
             break;
         case 3:
             if (arr == NULL) {
-                printf("Г‘Г­Г Г·Г Г«Г  Г±Г®Г§Г¤Г Г©ГІГҐ Г¬Г Г±Г±ГЁГў!\n");
+                printf("Сначала создайте массив!\n");
                 break;
             }
             do {
-                printf("\n\tГЊГҐГ­Гѕ\n");
-                printf("1. ГЏГ®Г±Г·ГЁГІГ ГІГј Г±ГіГ¬Г¬Гі Гў Г±ГІГ®Г«ГЎГ¶ГҐ\n");
-                printf("2. ГЏГ®Г±Г·ГЁГІГ ГІГј Г±ГіГ¬Г¬Гі Гў Г±ГІГ°Г®ГЄГҐ\n");
-                printf("3. Г‚ГҐГ°Г­ГіГІГјГ±Гї\n");
-                printf("Г‚Г»ГЎГҐГ°ГЁГІГҐ Г¤ГҐГ©Г±ГІГўГЁГҐ: ");
+                printf("\n\tМеню\n");
+                printf("1. Посчитать сумму в столбце\n");
+                printf("2. Посчитать сумму в строке\n");
+                printf("3. Вернуться\n");
+                printf("Выберите действие: ");
                 scanf("%d", &choice2);
                 switch (choice2) {
                 case 1:
                     sum = 0;
-                    printf("Г‚Г»ГЎГҐГ°ГЁГІГҐ Г­Г®Г¬ГҐГ° Г±ГІГ®ГЎГ¶Г : ");
+                    printf("Выберите номер стобца: ");
                     scanf("%d", &index);
+                    if (index > rows) {
+                        printf("Такого столбца не существует!\n");
+                        break;
+                    }
                     for (i = 0; i < rows; i++) {
-                        sum += *(arr + i * cols + index - 1);
+                        sum += arr[i][index - 1];
                     }
-                    printf("\nГ‘ГіГ¬Г¬Г  Г°Г ГўГ­Г : %d", sum);
+                    printf("\nСумма равна: %d", sum);
                     break;
-                case 2: 
+                case 2:
                     sum = 0;
-                    printf("Г‚Г»ГЎГҐГ°ГЁГІГҐ Г­Г®Г¬ГҐГ° Г±ГІГ°Г®ГЄГЁ: ");
+                    printf("Выберите номер строки: ");
                     scanf("%d", &index);
-                    for (j = 0; j < cols; j++) {
-                        sum += *(arr + (index - 1) * cols + j);
+                    if (index > cols) {
+                        printf("Такой строки не существует!\n");
+                        break;
                     }
-                    printf("\nГ‘ГіГ¬Г¬Г  Г°Г ГўГ­Г : %d", sum);
+                    for (j = 0; j < cols; j++) {
+                        sum += arr[index - 1][j];
+                    }
+                    printf("\nСумма равна: %d", sum);
                     break;
-                case 3: 
+                case 3:
                     system("cls");
                     break;
                 default:
                     system("cls");
-                    printf("ГЌГҐГЄГ®Г°Г°ГҐГЄГІГ­Г»Г© ГўГ»ГЎГ®Г°!\n");
+                    printf("Некорректный выбор!\n");
                     break;
                 }
             } while (choice2 != 3);
             break;
         case 4:
-            printf("Г‚ГўГҐГ¤ГЁГІГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г±ГІГ°Г®ГЄ: ");
+            printf("Введите количество строк: ");
             scanf("%d", &rows);
-            printf("Г‚ГўГҐГ¤ГЁГІГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г±ГІГ®Г«ГЎГ¶Г®Гў: ");
+            printf("Введите количество столбцов: ");
             scanf("%d", &cols);
-            arr = (int*)malloc(rows * cols * sizeof(int));
+            arr = (int**)malloc(rows * sizeof(int*));
+            rows2 = rows / 2;
             if (arr == NULL) {
-                printf("ГЌГҐ ГіГ¤Г Г«Г®Г±Гј ГўГ»Г¤ГҐГ«ГЁГІГј ГЇГ Г¬ГїГІГј!\n");
+                printf("Не удалось выделить память!\n");
                 break;
             }
-            for (i = 0; i < rows; i++)  { // Г¶ГЁГЄГ« ГЇГ® Г±ГІГ°Г®ГЄГ Г¬
-                for (j = 0; j < cols; j++)  { // Г¶ГЁГЄГ« ГЇГ® Г±ГІГ®Г«ГЎГ¶Г Г¬
-                    *(arr + i * cols + j) = rand () % 10;
+            for (i = 0; i < rows; i++) {
+                arr[i] = (int*)malloc(cols * sizeof(int));
+            }
+            for (i = 0; i < rows2; i++) { // цикл по строкам
+                for (j = 0; j < cols; j++) { // цикл по столбцам
+                    arr[rand() % rows][rand() % cols] = 0;
                 }
             }
-            printf("ГЊГ Г±Г±ГЁГў Г±Г®Г§Г¤Г Г­!\n");
+            
+                for (i = 0; i < rows; i++) { // цикл по строкам
+                    for (j = 0; j < cols; j++) { // цикл по столбцам
+                        if (arr[i][j] != 0) {
+                        arr[i][j] = rand() % 100;
+                    }
+                }     
+            }
+            printf("Массив создан!\n");
             break;
-        case 5:
+
+        case 5: 
+            printf("\nВыберите номер строки: ");
+            scanf("%d", &index);
+            k = 0;
+            if (index > cols) {
+                printf("Такой строки не существует!\n");
+                break;
+            }
+            for (i = 0; i < cols; i++) {
+                if (arr[index - 1][i] == 0) {
+                    k++;
+                }
+            }
+            printf("Количество нулей в строке: %d\n", k);
+            break;
+        case 6:
+            printf("\nВыберите номер столбца: ");
+            scanf("%d", &index);
+            if (index > rows) {
+                printf("Такой строки не существует!\n");
+                break;
+            }
+            k = 0;
+            for (i = 0; i < cols; i++) {
+                if (arr[i][index - 1] == 0) {
+                    k++;
+                }
+            }
+            printf("Количество нулей в столбце: %d\n", k);
+            break;
+        case 7:
             system("cls");
-            printf("Г„Г® Г±ГўГЁГ¤Г Г­ГЁГї!\n");
+            printf("До свидания!\n");
             break;
         default:
             system("cls");
-            printf("ГЌГҐГЄГ®Г°Г°ГҐГЄГІГ­Г»Г© ГўГ»ГЎГ®Г°!\n");
+            printf("Некорректный выбор!\n");
             break;
         }
-    } while (choice != 5);
-}*/
+    } while (choice != 7);
+}
